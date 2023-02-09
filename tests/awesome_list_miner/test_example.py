@@ -2,7 +2,6 @@ import pytest
 
 from awesome_list_miner.example import hello
 
-
 @pytest.mark.parametrize(
     "name,expected",
     [
