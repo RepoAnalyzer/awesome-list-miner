@@ -5,7 +5,7 @@ from typing import List, Tuple, Union
 from projen import FileBase, IniFile, SampleDir, TomlFile, YamlFile
 from projen.python import PythonProject
 
-MODULE_NAME = "projen_template"
+MODULE_NAME = "awesome_list_parser"
 
 # Folders holding all our modules with code.
 ROOT_MODULE_DIR = "src"

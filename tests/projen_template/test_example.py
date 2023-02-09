@@ -1,6 +1,6 @@
 import pytest
 
-from projen_template.example import hello
+from awesome_list_miner.example import hello
 
 
 @pytest.mark.parametrize(
