@@ -5,3 +5,4 @@
 
 # Simple
 [folke/lazy.nvim](https://github.com/folke/lazy.nvim) - A modern plugin manager, featuring a graphical interface, async execution, a lockfile and more 💤.
+[regular-expressions topic](https://github.com/topics/regular-expressions?l=python)
