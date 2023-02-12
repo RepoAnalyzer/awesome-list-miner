@@ -43,8 +43,11 @@ def test_find_all_links(markdown, links):
         ("#table-of-contents", False),
         # It's a website but not a github repo.
         ("https://www.shorturl.at/shortener.php", False),
+
         ("https://github.com/folke/lazy.nvim", True),
-        ("http://github.com/folke/lazy.nvim", True),
+        ("http://github.com/folke/lazy.nvim", True),  # With insecure protocol is fine.
+        ("https://github.com/eleventigers/awesome-rxjava#readme", True),  # With anchor.
+
         # It's a github page but not a repo.
         ("https://github.com/topics/regular-expressions?l=python", False),
     ],

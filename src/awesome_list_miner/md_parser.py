@@ -7,7 +7,7 @@ from markdown import markdown
 
 def md_to_html(markdown_text: str) -> BeautifulSoup:
     html = markdown(markdown_text)
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, "html.parser")
 
     return soup
 
@@ -26,8 +26,11 @@ def find_all_links(soup: BeautifulSoup) -> List[Tuple[str, str]]:
 def is_github_repo_url(url: str) -> bool:
     """
     Used to remove markdown anchor links, website references... and leave
-    only github repositories.
+    only github repositories. It also takes anchors into consideration. For
+    example, https://github.com/eleventigers/awesome-rxjava#readme
 
-    See [available symbols in github repository name](shorturl.at/ACFG0)
+    See [available symbols in github repository name](shorturl.at/ACFG0).
     """
-    return bool(re.compile(r"^https?://github.com/[\w.-]+/[\w.-]+").fullmatch(url))
+    return bool(
+        re.compile(r"^https?://github.com/[\w.-]+/[\w.-]+(#[\w.-]+)?").fullmatch(url)
+    )
