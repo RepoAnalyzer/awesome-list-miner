@@ -1,6 +1,4 @@
-from github import Github
-
-from awesome_list_miner import md_parser
+from github import ContentFile, Github
 
 g = Github()
 
@@ -9,17 +7,23 @@ def get_readme(
     full_name: str = None,
     owner="sindresorhus",
     repo="awesome",
-):
+) -> ContentFile:
+    """
+    Get readme from a repository.
+
+    Use readme.decoded_content to read raw file.
+
+    :param owner: nickname of the repository owner
+    :type owner: str
+    :param repo: repository
+    :type repo: str
+    :param full_name: owner/repo combination (may be easier to parse from urls)
+    :return: readme content file, see:
+    - [repository content github api docs](shorturl.at/fpW78)
+    - [class documentation of PyGithub](http://tny.im/spi1L)
+    """
     repo = g.get_repo(full_name or f"{owner}/{repo}")
 
     readme = repo.get_readme()
 
     return readme
-
-
-print(get_readme().decoded_content)
-html = md_parser.md_to_html(get_readme().decoded_content)
-links = md_parser.find_all_links(html)
-github_repo_links = filter(lambda link: md_parser.is_github_repo_url(link[1]), links)
-for link in github_repo_links:
-    print(link)
