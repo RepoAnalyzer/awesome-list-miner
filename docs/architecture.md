@@ -5,7 +5,7 @@
 
 # Architecture
 Packages:
-- WebScraper(awesome_list_web_scraper) - recursively fetches `README` contents from
-repositories using PyGithub.
+- WebScraper(awesome_list_web_scraper) - fetches `README` contents from
+repositories by 'awesome-list' topic using PyGithub.
 - Parser(awesome_list_parser) - analyses `README` file into github repository
 links.
