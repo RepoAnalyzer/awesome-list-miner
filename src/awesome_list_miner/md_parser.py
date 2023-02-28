@@ -2,6 +2,7 @@ import re
 from typing import List, Tuple
 
 from bs4 import BeautifulSoup
+from github import ContentFile
 from markdown import markdown
 
 
@@ -34,3 +35,11 @@ def is_github_repo_url(url: str) -> bool:
     return bool(
         re.compile(r"^https?://github.com/[\w.-]+/[\w.-]+(#[\w.-]+)?").fullmatch(url)
     )
+
+
+def find_github_repos(file: ContentFile):
+    html = md_to_html(file.decoded_content)
+    links = find_all_links(html)
+    github_repo_links = filter(lambda link: is_github_repo_url(link[1]), links)
+
+    return list(github_repo_links)
